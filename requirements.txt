@@ -1,17 +1,13 @@
 email-validator
 fastapi
 jinja2
+matplotlib
 pandas
 pydantic
 PyPDF2
 scikit-learn
+seaborn
 sentence-transformers
 sqlalchemy
 streamlit
 uvicorn
-matplotlib
-<<<<<<< HEAD
-seaborn
-=======
-seaborn
->>>>>>> d7856c8 (💾 Save local changes before pulling with rebase)
