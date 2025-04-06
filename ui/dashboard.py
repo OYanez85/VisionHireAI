@@ -1,4 +1,4 @@
-# Updated: ui/dashboard.py
+# Updated: ui/dashboard.py (no emojis)
 import streamlit as st
 import sys
 from pathlib import Path
@@ -20,8 +20,8 @@ from utils.emailer import send_email
 
 st.set_page_config(page_title="VisionHireAI", layout="wide")
 
-st.sidebar.title("\ud83d\udcca VisionHireAI Menu")
-section = st.sidebar.radio("Go to", ["\ud83c\udfe0 Home", "\ud83d\udcc4 Upload CVs", "\ud83d\udccb Job Description", "\u2705 Shortlisted", "\ud83d\udcca Match Scores", "\u2139\ufe0f About"])
+st.sidebar.title("VisionHireAI Menu")
+section = st.sidebar.radio("Go to", ["Home", "Upload CVs", "Job Description", "Shortlisted", "Match Scores", "About"])
 
 base_path = Path(__file__).resolve().parents[1]
 job_path = base_path / "db" / "CVs" / "job_description.csv"
@@ -32,22 +32,22 @@ if "cv_texts" not in st.session_state:
     st.session_state.scores = {}
     st.session_state.top_candidates = []
 
-if section == "\ud83c\udfe0 Home":
-    st.title("\ud83d\udcc4 VisionHireAI Dashboard")
+if section == "Home":
+    st.title("VisionHireAI Dashboard")
     st.markdown("Welcome to the **VisionHireAI** platform.")
 
-elif section == "\ud83d\udcc4 Upload CVs":
-    uploaded_files = st.file_uploader("\ud83d\udcc4 Upload candidate CVs (PDF):", type=["pdf"], accept_multiple_files=True)
+elif section == "Upload CVs":
+    uploaded_files = st.file_uploader("Upload candidate CVs (PDF):", type=["pdf"], accept_multiple_files=True)
     if uploaded_files:
         st.session_state.cv_texts = parse_uploaded_cvs(uploaded_files)
         st.success(f"{len(uploaded_files)} file(s) uploaded successfully.")
 
-elif section == "\ud83d\udccb Job Description":
-    st.subheader("\ud83d\udcc3 Job Description")
-    with st.expander("\ud83d\udcc3 View Job Description"):
+elif section == "Job Description":
+    st.subheader("Job Description")
+    with st.expander("View Job Description"):
         st.write(job_description)
 
-    if st.button("\ud83d\udd0d Match CVs"):
+    if st.button("Match CVs"):
         if not st.session_state.cv_texts:
             st.warning("Please upload CVs first.")
         else:
@@ -79,8 +79,8 @@ elif section == "\ud83d\udccb Job Description":
                 log_review_schedule(st.session_state.top_candidates)
                 st.success("Scoring and shortlisting complete.")
 
-elif section == "\u2705 Shortlisted":
-    st.subheader("\u2705 Shortlisted Candidates")
+elif section == "Shortlisted":
+    st.subheader("Shortlisted Candidates")
     if st.session_state.top_candidates:
         shortlisted_data = [(name, st.session_state.scores[name]) for name in st.session_state.top_candidates]
         df = pd.DataFrame(shortlisted_data, columns=["Filename", "Score"])
@@ -88,12 +88,12 @@ elif section == "\u2705 Shortlisted":
 
         # Download button
         csv = df.to_csv(index=False).encode("utf-8")
-        st.download_button("\ud83d\udd27 Download Shortlisted CSV", csv, "shortlisted_candidates.csv", "text/csv")
+        st.download_button("Download Shortlisted CSV", csv, "shortlisted_candidates.csv", "text/csv")
     else:
         st.info("No candidates shortlisted yet.")
 
-elif section == "\ud83d\udcca Match Scores":
-    st.subheader("\ud83d\udcca Match Scores")
+elif section == "Match Scores":
+    st.subheader("Match Scores")
     if st.session_state.scores:
         df = pd.DataFrame({"Filename": list(st.session_state.scores.keys()), "Score": list(st.session_state.scores.values())})
         df = df.sort_values(by="Score", ascending=False)
@@ -107,17 +107,15 @@ elif section == "\ud83d\udcca Match Scores":
     else:
         st.info("No scores available. Go to 'Job Description' to run matching.")
 
-elif section == "\u2139\ufe0f About":
+elif section == "About":
     st.markdown("""
     **VisionHireAI** is a smart resume filtering tool that matches candidates to job descriptions using state-of-the-art NLP.
 
     **Features**:
-    - \ud83d\udcc5 Upload PDF CVs
-    - \ud83e\udde0 Match using SentenceTransformers
-    - \u2705 See shortlisted candidates
-    - \ud83d\udcca Visualize scores
+    - Upload PDF CVs
+    - Match using SentenceTransformers
+    - See shortlisted candidates
+    - Visualize scores
 
     **Developer**: Oscar Yanez
     """)
-
-
