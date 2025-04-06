@@ -106,6 +106,28 @@ This runs both frontend and backend services using Docker.
 ## 📸 Demo
 _Add your recorded video or link here_
 
+# VisionHireAI
+
+**VisionHireAI** is a generative AI solution submitted for the "Hack The Future: A Gen AI Sprint Powered By Data" hackathon.
+
+## 🚀 Project Links
+
+- 🔗 **GitHub Repository**  
+  👉 [https://github.com/OYanez85/VisionHireAI#](https://github.com/OYanez85/VisionHireAI#)
+
+- 📄 **Google Drive File (PDF or Report)**  
+  👉 [View Report](https://drive.google.com/file/d/1s3tw3rbmDdd7-TYUS6quVyfJlhWZHqRf/view?usp=drive_link)
+
+- 🌐 **Streamlit App (Live Demo)**  
+  👉 [Launch App](https://visionhireai.streamlit.app/)
+
+- 📽️ **Google Slides Presentation**  
+  👉 [View Slides](https://docs.google.com/presentation/d/1PKLlha74MLJwgR326pWl-JbBU1zKXTGM/edit?usp=sharing&ouid=100907462623455240504&rtpof=true&sd=true)
+
+- 🎬 **Demo / Pitch Video**  
+  👉 [Watch on Google Drive](https://drive.google.com/file/d/1s3tw3rbmDdd7-TYUS6quVyfJlhWZHqRf/view?usp=drive_link)
+
+
 ---
 
 For questions or suggestions, feel free to reach out or create an issue!
