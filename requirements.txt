@@ -10,3 +10,4 @@ sqlalchemy
 streamlit
 uvicorn
 matplotlib
+seaborn
