@@ -5,3 +5,4 @@ pydantic
 sqlalchemy
 jinja2
 email-validator
+PyPDF2
