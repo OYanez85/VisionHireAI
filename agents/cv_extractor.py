@@ -1,3 +1,4 @@
+# Updated: agents/cv_extractor.py
 from pathlib import Path
 from PyPDF2 import PdfReader
 
@@ -9,7 +10,7 @@ def load_all_cvs(cv_folder: Path) -> dict:
             text = " ".join(page.extract_text() or "" for page in reader.pages)
             cv_data[cv_file.name] = text
         except Exception as e:
-            print(f"❌ Error reading {cv_file.name}: {e}")
+            print(f"\u274c Error reading {cv_file.name}: {e}")
     return cv_data
 
 def parse_uploaded_cvs(uploaded_files) -> dict:
@@ -20,5 +21,5 @@ def parse_uploaded_cvs(uploaded_files) -> dict:
             text = " ".join(page.extract_text() or "" for page in reader.pages)
             cvs[file.name] = text
         except Exception as e:
-            print(f"❌ Error reading uploaded file {file.name}: {e}")
+            print(f"\u274c Error reading uploaded file {file.name}: {e}")
     return cvs
