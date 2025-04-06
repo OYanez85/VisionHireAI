@@ -1,4 +1,4 @@
-# Updated: ui/dashboard.py (no emojis)
+# Updated: ui/dashboard.py
 import streamlit as st
 import sys
 from pathlib import Path
@@ -86,7 +86,6 @@ elif section == "Shortlisted":
         df = pd.DataFrame(shortlisted_data, columns=["Filename", "Score"])
         st.dataframe(df)
 
-        # Download button
         csv = df.to_csv(index=False).encode("utf-8")
         st.download_button("Download Shortlisted CSV", csv, "shortlisted_candidates.csv", "text/csv")
     else:
@@ -95,14 +94,20 @@ elif section == "Shortlisted":
 elif section == "Match Scores":
     st.subheader("Match Scores")
     if st.session_state.scores:
-        df = pd.DataFrame({"Filename": list(st.session_state.scores.keys()), "Score": list(st.session_state.scores.values())})
-        df = df.sort_values(by="Score", ascending=False)
+        df = pd.DataFrame({
+            "Filename": list(st.session_state.scores.keys()),
+            "Score": list(st.session_state.scores.values())
+        }).sort_values(by="Score", ascending=False)
+
         st.dataframe(df)
 
-        # Plot heatmap
-        fig, ax = plt.subplots(figsize=(10, 1))
-        sns.heatmap([df["Score"]], cmap="YlGnBu", annot=True, fmt=".1f", xticklabels=df["Filename"], yticklabels=False, ax=ax, cbar=False)
-        plt.xticks(rotation=90)
+        # Plot updated heatmap
+        data = pd.DataFrame(df["Score"]).T  # single row heatmap
+        data.columns = df["Filename"]
+
+        fig, ax = plt.subplots(figsize=(12, 6))
+        sns.heatmap(data, ax=ax, cmap="YlGnBu", annot=True, fmt=".1f", cbar=True)
+        fig.tight_layout()
         st.pyplot(fig)
     else:
         st.info("No scores available. Go to 'Job Description' to run matching.")
@@ -119,3 +124,4 @@ elif section == "About":
 
     **Developer**: Oscar Yanez
     """)
+
