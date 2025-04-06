@@ -6,3 +6,4 @@ sqlalchemy
 jinja2
 email-validator
 PyPDF2
+scikit-learn
